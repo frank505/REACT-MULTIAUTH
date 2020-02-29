@@ -1,19 +1,25 @@
 import {LoginUser,SignUpService} from '../../../../services/DashboardOne/AuthService'
-import {restartAuthResponseAndShowLoader} from '../../UniversalActions'
+import {restartAuthResponseAndShowLoaderActions,
+        signUpResponseActions,
+        loginResponseActions} from '../../UniversalActions'
 
-export const signUp = (credentials) =>{
+
+
+
+export const signUpAction = (credentials) =>{
     console.log(credentials);
     return (dispatch)=>{
         
-       restartAuthResponseAndShowLoader();
+        dispatch({type:'RESTART_AUTH_RESPONSE'});
+        dispatch({type:'LOADING'});
 
         SignUpService(credentials).then((res)=>{
-            console.log(res);
-            if(res.hasOwnProperty('success')){
+            
+            if(res.hasOwnProperty('success') && res.success==true){
 
                 dispatch({type:'SIGNUP_SUCCESS',res});
                 
-            }else{
+            }else if(res.hasOwnProperty('success') && res.success==false) { 
                 dispatch({type:'SIGNUP_ERROR',res})
             }
         },
@@ -26,26 +32,19 @@ export const signUp = (credentials) =>{
 }
 
 
-export const UserLogin = (credentials,history) =>
+export const UserLoginAction = (credentials,history) =>
 {
     
 
  return (dispatch)=>{
 
-     restartAuthResponseAndShowLoader();
+    dispatch({type:'RESTART_AUTH_RESPONSE'});
+    dispatch({type:'LOADING'});
     
      LoginUser(credentials,history).then((res)=>{
-         console.log(res);
-         if(res.success==true && res.hasOwnProperty('token')){
-            localStorage.setItem("dashboardOne",'Bearer '+res.token);
-            dispatch({type:'LOGIN_SUCCESS'});
-            setTimeout(() => {
-                history.push("/");     
-            }, 3000);
-            
-        }else{
-            dispatch({type:'LOGIN_ERROR',res})
-        }
+        const redirectTo = "/dashboard-one";
+        const tokenId = "dashboardOne";
+       loginResponseActions(res,redirectTo,tokenId,history);       
     },
     error=>{
         dispatch({type:'CODE_ERROR',error});
