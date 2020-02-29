@@ -1,10 +1,11 @@
 import React from 'react'
+import HomeView from '../views/HomeView'
 
 export default function Home() {
     return (
     <div>
 
-        <p>hello</p>
+        <HomeView/>
     </div>
     )
 }
