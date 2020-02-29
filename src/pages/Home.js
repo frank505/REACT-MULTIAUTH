@@ -1,11 +1,10 @@
 import React from 'react'
-import HomeView from '../views/HomeView'
+import HomeView from '../views/Home/HomeView'
 
-export default function Home() {
+export default function Home(props) {
     return (
     <div>
-
-        <HomeView/>
+        <HomeView props={props}/>
     </div>
     )
 }

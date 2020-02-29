@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-export default function HomeView() {
+export default function DashboardTwoPrivateRoutes() {
     return (
         <div>
             
