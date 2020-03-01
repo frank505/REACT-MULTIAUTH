@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import {useStyles} from './styles'
+import {useStyles} from '../../styles'
+
 
 
 
@@ -12,12 +12,12 @@ export default function HomeView(props) {
 
     const goToDashboardOne = () =>
     {
-      props.props.history.push('/dashboard-one');
+      props.props.history.push('/user');
     };
 
     const goToDashboardTwo = () =>
     {
-     props.props.history.push('/dashboard-two');
+     props.props.history.push('/admin');
     }
 
 
@@ -28,11 +28,11 @@ export default function HomeView(props) {
 
      
   <Button variant="contained" onClick={goToDashboardOne} size="large" className={classes.extraBtnStyle} color="primary">
-  Dashboard 1
+ User 
 </Button> <br/>
 
 <Button variant="contained"  onClick={goToDashboardTwo} size="large" className={classes.extraBtnStyle} color="secondary">
-  Dashboard 2
+ Admin
 </Button>
 
 

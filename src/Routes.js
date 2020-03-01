@@ -1,10 +1,13 @@
 import React from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import Home from './pages/Home'
-import DashboardOnePrivateRoutes from './DashboardOnePrivateRoutes'
-import DashboardTwoPrivateRoutes from './DashboardTwoPrivateRoutes'
-import LoginDashboardOne from './pages/DashboardOne/Auth/Login'
-import LoginDashboardTwo from './pages/DashboardTwo/Auth/Login'
+import UserPrivateRoutes from './UserPrivateRoutes'
+import AdminPrivateRoutes from './AdminPrivateRoutes'
+import UserLogin from './pages/User/Auth/Login'
+import AdminLogin from './pages/Admin/Auth/Login'
+import UserRegister from './pages/User/Auth/Register'
+import AdminRegister from './pages/Admin/Auth/Register'
+
 import {Gaurd} from './Gaurd'
 
 
@@ -16,10 +19,12 @@ const Routes = (props) => {
        <Redirect to={{pathname: '/home'}} />
          )} />
           <Route path="/home" component={Home} />
-          <Route path="/dashboard-one/login" component={LoginDashboardOne} />
-          <Route path="/dashboard-two/login" component={LoginDashboardTwo} />
-          <Gaurd  path="/dashboard-one" token='dashboardOne' routeRedirect='/dashboard-one/login' component={DashboardOnePrivateRoutes} /> 
-          <Gaurd  path="/dashboard-two" token='dashboardTwo' routeRedirect='/dashboard-two/login' component={DashboardTwoPrivateRoutes} /> 
+          <Route path="/user/login" component={UserLogin} />
+          <Route path="/admin/login" component={AdminLogin} />
+          <Route path="/user/register" component={UserRegister} />
+          <Route path="/admin/register" component={AdminRegister} />
+          <Gaurd  path="/user" token='user-token' routeRedirect='/user/login' component={UserPrivateRoutes} /> 
+          <Gaurd  path="/admin" token='admin-token' routeRedirect='/admin/login' component={AdminPrivateRoutes} /> 
 
           </Switch>
     );
