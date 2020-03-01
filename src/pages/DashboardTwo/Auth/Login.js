@@ -1,10 +1,10 @@
 import React from 'react'
 import LoginView from '../../../views/DashboardTwo/Auth/LoginView'
 
-export default function LoginDashboardTwo() {
+export default function LoginDashboardTwo(props) {
     return (
         <div>
-        <LoginView />
+        <LoginView props={props} />
         </div>
     )
 }
