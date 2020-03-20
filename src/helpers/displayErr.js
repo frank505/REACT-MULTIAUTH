@@ -1,4 +1,4 @@
-import {Alert} from '@material-ui/lab';
+
 
 
 export const errorMessage = (dataObject) =>{
@@ -21,6 +21,9 @@ export const displayErrorMessages = (errorResponse,displayErr) =>
   if(typeof errorResponse == 'string'){
     displayErr.innerHTML = '<div class="alert alert-danger add-padding">'+errorResponse+'</div>';
     return;
+  }else if(typeof errorResponse == 'undefined')
+  {
+    displayErr.innerHTML = '<div class="alert alert-danger add-padding">action failed error</div>';
   }else
   {
     const lengthErrObject = Object.keys(errorResponse).length;
